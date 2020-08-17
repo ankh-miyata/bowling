@@ -7,6 +7,8 @@ class Bowling
         @scores = []
         #一時保存用の配列
         @temp = []
+        #フレームごとの合計を格納する配列
+        @frame_score = [] 
     end
     
     #スコアの合計を返す
@@ -37,9 +39,15 @@ class Bowling
             else
                 @total_score += score.inject(:+)
             end
+            @frame_score << @total_score
         end
     end
     
+    #指定したフレームの時点でのスコア合計を返す
+    def frame_score(frame)
+        @frame_score[frame - 1]
+    end
+        
     private
     #ストライクかどうかを判定する
     def strike?(score)
